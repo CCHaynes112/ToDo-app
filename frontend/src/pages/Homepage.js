@@ -4,9 +4,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import TaskCard from '../components/TaskCard';
 
 function Homepage() {
+
     return (
         <div>
             <Box my={4}>
@@ -19,30 +23,26 @@ function Homepage() {
                 </Grid>
             </Box>
             <Grid container spacing={2}>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
-                <Grid item sm={3}>
-                    <TaskCard title="Item 1" description="Words and stuff will go here. Here's a description of the to do item." />
-                </Grid>
+                <Query
+                    query={gql`
+                        {
+                            allTodotasks {
+                                id,
+                                title,
+                                description
+                            }
+                        }
+                    `}>
+                    {({ loading, error, data }) => {
+                        if (loading) return <p>Loading...</p>;
+                        if (error) return <p>Error loading tasks</p>;
+                        return data.allTodotasks.map(({ id, title, description }) => (
+                            <Grid item sm={3} key={id}>
+                                <TaskCard title={title} description={description} />
+                            </Grid>
+                        ));
+                    }}
+                </Query>
             </Grid>
         </div>
     );

@@ -1,16 +1,23 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+
+import {ApolloProvider} from 'react-apollo';
+import ApolloClient from "apollo-boost";
 
 import Homepage from './pages/Homepage';
 
+
+const client = new ApolloClient({
+  uri: "http://localhost:8000/graphql"
+});
+
 function App() {
   return (
-    <Container>
-      <Homepage />
-    </Container>
+    <ApolloProvider client={client}>
+      <Container>
+        <Homepage />
+      </Container>
+    </ApolloProvider>
   );
 }
 
