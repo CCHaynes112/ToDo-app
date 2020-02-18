@@ -2,12 +2,12 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import TaskCard from '../components/TaskCard';
+import CreateTaskDialog from '../components/CreateTaskDialog';
 
 function Homepage() {
 
@@ -19,14 +19,14 @@ function Homepage() {
                 </Typography>
 
                 <Grid item xs={12} align="center">
-                    <Button color="primary" variant="contained">Add a Task</Button>
+                    <CreateTaskDialog />
                 </Grid>
             </Box>
             <Grid container spacing={2}>
                 <Query
                     query={gql`
                         {
-                            allTodotasks {
+                            todoTasks {
                                 id,
                                 title,
                                 description
@@ -36,7 +36,7 @@ function Homepage() {
                     {({ loading, error, data }) => {
                         if (loading) return <p>Loading...</p>;
                         if (error) return <p>Error loading tasks</p>;
-                        return data.allTodotasks.map(({ id, title, description }) => (
+                        return data.todoTasks.map(({ id, title, description }) => (
                             <Grid item sm={3} key={id}>
                                 <TaskCard title={title} description={description} />
                             </Grid>
