@@ -21,6 +21,11 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         flex: '1 0 auto',
         alignItems: 'flex-end',
+    },
+
+    content: {
+        overflow: "auto",
+        margin: "10px",
     }
 });
 
@@ -29,7 +34,7 @@ function TaskCard(props) {
     return (
         <Card className={classes.card}>
             <CardHeader title={props.title} />
-            <CardContent>
+            <CardContent className={classes.content}>
                 <Typography>
                     {props.description}
                 </Typography>

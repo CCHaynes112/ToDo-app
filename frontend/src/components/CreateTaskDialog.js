@@ -76,7 +76,10 @@ SimpleDialog.propTypes = {
     open: PropTypes.bool.isRequired,
 };
 
+/* Component for the button that creates the modal as well as handles opening and closing of the modal */
 export default function CreateTaskDialog() {
+    //const bool open;
+    //setOpen sets state
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -88,6 +91,7 @@ export default function CreateTaskDialog() {
     };
 
     return (
+        //SimpleDialog I guess handles just the open and onClose events
         <div>
             <Button variant="contained" color="primary" onClick={handleClickOpen}>Create Task</Button>
             <SimpleDialog open={open} onClose={handleClose} />

@@ -20,7 +20,7 @@
         "pk": 3,
         "fields": {
             "title": "Third Task",
-            "description": "This is the third task. Here's some text so it is a little longer than the others. Let's see what happens when the text is decently long. I wouldn't imagine anybodys descriptions being much longer than this is."
+            "description": "This is the third task. Here's some text so it is a little longer than the others. Let's see what happens when the text is decently long. I wouldn't imagine anybodys descriptions being much longer than this is. Let's add a little bit more to see how long this thing can be. This should be entirely too long."
         }
     },
     {

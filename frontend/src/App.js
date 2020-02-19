@@ -5,6 +5,7 @@ import {ApolloProvider} from 'react-apollo';
 import ApolloClient from "apollo-boost";
 
 import Homepage from './pages/Homepage';
+import Header from './components/Header';
 
 
 const client = new ApolloClient({
@@ -14,6 +15,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <Header />
       <Container>
         <Homepage />
       </Container>
